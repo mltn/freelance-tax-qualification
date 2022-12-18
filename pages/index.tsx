@@ -26,27 +26,8 @@ const IndexPage = ({ questionnaire, testCriteria }) => {
   return (
     <main className="flex flex-col min-h-screen mx-auto max-w-screen-sm">
       <h1 className="m-4 text-xl font-semibold text-center">
-        Test Samostalnosti - Kriterijum 5.
+        Samooporezivanje (freelancer)
       </h1>
-      <p className="mx-4 ">
-        U nastavku se nalazi primer automatizovanog i redefinisanog kriterijuma
-        5. testa samostalnosti napravljen za potrebe radne grupe koja ima za
-        cilj uređenje statusa lica koja posluju preko interneta. Automatizacija
-        je napravljena u cilju predstavljanja ideje Digitalne zajednice
-        iznesenoj na radnoj grupi, i ograđujemo se od svakog tumačenja koje je
-        stavljeno van konteksta naše ideje. Kratka napomena je da rezultati
-        upitnika zavise od iskrenosti odgovora, koji treba da definišu odnos sa
-        klijentom kakav je u suštini.
-        <br />
-        <br />
-        <strong>
-          Kriterijum 5. testa samostalnosti ispituje način obezbeđivanja
-          osnovnog alata, opreme i drugih osnovnih materijalnih ili
-          nematerijalnih sredstava potrebnih za redovan rad. Dodatno, ispituje
-          da li poslujete samostalno ili postoji stalna kontrola i nadzor od
-          strane nalogodavca.
-        </strong>{" "}
-      </p>
       <Questionnaire
         items={questionnaire}
         setResponse={(response: Response) => {

@@ -33,25 +33,20 @@ export default function ResultsModal({ explanations, passStatus, hideModal }) {
       <div className="fixed inset-0 flex justify-center items-center">
         <div className="overflow-auto inset-0 w-full h-full flex justify-center items-center">
           <div className="bg-white rounded-sm shadow-xl p-4 max-w-lg ">
-            <div className="flex justify-between mb-2">
-              <div className="flex items-center">
-                <h2 className="test-result__title text-lg">
-                  {passStatusMessage(passStatus)}
-                </h2>
-                <button
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 ml-4"
-                  onClick={hideModal}
-                >
-                  Zatvori
-                </button>
-              </div>
-            </div>
             <ExplanationList
               explanations={explanations}
               passStatusEmoji={
                 passStatus === PassStatus.Passed ? passedEmoji : failedEmoji
               }
             />
+            <div className="flex flex-row justify-end"><button
+              className={"bg-blue-500 hover:bg-blue-700 text-white text-right "
+                + "font-bold py-1 px-2 ml-4"}
+              onClick={hideModal}
+            >
+              Zatvori
+            </button></div>
+            
           </div>
         </div>
       </div>

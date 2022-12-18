@@ -9,22 +9,19 @@ import ResultsModal from "./ResultsModal";
 import ResultsButton from "./ResultsButton";
 
 type Props = {
-  testCriteria: Criteria[];
   responses: Response[];
   answers: Answer[];
   isResultsBtnDisabled: boolean;
 };
 
 export const TestResult = ({
-  testCriteria,
   responses,
   answers,
   isResultsBtnDisabled,
 }:Props) => {
   const [isResultVisible, setIsResultVisible] = useState(false);
-  const passStatus = getTestPassStatus(testCriteria, responses, answers);
+  const passStatus = getTestPassStatus(responses, answers);
   const explanations = getExplanations(responses, answers, passStatus);
-console.log(responses.map(r => r.questionId + ":" + r.answerId), answers);
 
   if (!isResultVisible) {
     return (

@@ -75,7 +75,6 @@ const IndexPage = ({ questionnaire, testCriteria }: Props) => {
       />
 
       <TestResult
-        testCriteria={testCriteria}
         responses={responses}
         answers={questionnaire.flatMap((item) => item.answers)}
         isResultsBtnDisabled={

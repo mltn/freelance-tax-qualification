@@ -9,7 +9,6 @@ import {
 import { getCriteriaPassStatus } from "./expressionEvaluation";
 
 export const getTestPassStatus = (
-  testCriteria: Criteria[],
   responses: Response[],
   answers: Answer[]
 ): PassStatus => {
@@ -51,6 +50,7 @@ export const getExplanations = (
   answers: Answer[],
   passStatus: PassStatus
 ): String[] => {
+  console.log(responses.map(r => r.questionId + ":" + r.answerId));
   return responses
     .filter((response) => {
       const answer = answers.find((answer) => answer.id === response.answerId);
@@ -59,7 +59,7 @@ export const getExplanations = (
       const passed = passStatus === PassStatus.Passed;
       const answerAndStatusMatch =
         (isFailingAnswer && !passed) || (!isFailingAnswer && passed);
-      return hasExplanation && answerAndStatusMatch;
+      return hasExplanation;
     })
     .map(
       (response) =>

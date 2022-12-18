@@ -1,0 +1,21 @@
+body {
+  background: #fcfcfc;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+}
+
+.hide-scroll-bar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scroll-bar::-webkit-scrollbar {
+  display: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

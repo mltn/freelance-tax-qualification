@@ -10,23 +10,12 @@ import { getCriteriaPassStatus } from "./expressionEvaluation";
 
 export const getTestPassStatus = (
   testCriteria: Criteria[],
-  responses: Response[]
+  responses: Response[],
+  answers: Answer[]
 ): PassStatus => {
-  const totalCriteria = testCriteria.length;
-  const totalPassed = testCriteria.filter(
-    (criteria) =>
-      getCriteriaPassStatus(criteria, responses) === PassStatus.Passed
-  ).length;
-  const totalFailed = testCriteria.filter(
-    (criteria) =>
-      getCriteriaPassStatus(criteria, responses) === PassStatus.Failed
-  ).length;
-  const passStatus =
-    totalPassed >= totalCriteria / 2
-      ? PassStatus.Passed
-      : totalFailed >= totalCriteria / 2
-      ? PassStatus.Failed
-      : PassStatus.Incomplete;
+  const isFailed = responses.some(r => answers.filter(a => a.isFailingAnswer && a.id === r.answerId));
+  const passStatus = isFailed
+      ? PassStatus.Failed : PassStatus.Passed
   return passStatus;
 };
 

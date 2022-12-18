@@ -12,7 +12,7 @@ type Props = {
   testCriteria: Criteria[];
   responses: Response[];
   answers: Answer[];
-  questions: Question[];
+  isResultsBtnDisabled: boolean;
 };
 
 export const TestResult = ({
@@ -20,10 +20,11 @@ export const TestResult = ({
   responses,
   answers,
   isResultsBtnDisabled,
-}) => {
+}:Props) => {
   const [isResultVisible, setIsResultVisible] = useState(false);
-  const passStatus = getTestPassStatus(testCriteria, responses);
+  const passStatus = getTestPassStatus(testCriteria, responses, answers);
   const explanations = getExplanations(responses, answers, passStatus);
+console.log(responses.map(r => r.questionId + ":" + r.answerId), answers);
 
   if (!isResultVisible) {
     return (

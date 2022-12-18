@@ -9,7 +9,7 @@ type Props = {
   setResponse: (response: Response) => void;
 };
 
-export const Questionnaire = ({ items, setResponse, responses }) => {
+export const Questionnaire = ({ items, setResponse, responses }: Props) => {
   const visibleQuestionnaireItems = getVisibleItems(items, responses);
 
   return (

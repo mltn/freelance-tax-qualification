@@ -20,7 +20,7 @@ type Props = {
   testCriteria: Criteria[];
 };
 
-const IndexPage = ({ questionnaire, testCriteria }) => {
+const IndexPage = ({ questionnaire, testCriteria }: Props) => {
   const [responses, setResponses] = useState<Response[]>([]);
   const questions: Question[] = questionnaire.map((item) => item.question);
   return (
@@ -36,8 +36,35 @@ const IndexPage = ({ questionnaire, testCriteria }) => {
               (r) => r.questionId === response.questionId
             );
             if (existingResponse) {
-              return responses.map((r) =>
+              let updatedResponses = responses.map((r) =>
                 r.questionId === response.questionId ? response : r
+              );
+              let questionIdsToHide = [];
+              updatedResponses.forEach((r) => {
+                const item = questionnaire.find(
+                  (q) => q.question.id === r.questionId
+                );
+                const hasPrecondition =
+                  item.question.showIfResponseHasAnswerId != null;
+                const isPreconditionResponseGiven = updatedResponses
+                  .filter(
+                    (response) =>
+                      questionIdsToHide.indexOf(response.questionId) === -1
+                  )
+                  .some((response) =>
+                    item.question.showIfResponseHasAnswerId
+                      ?.split(",")
+                      ?.includes("" + response.answerId)
+                  );
+                const isVisible =
+                  !hasPrecondition || isPreconditionResponseGiven;
+                if (!isVisible) {
+                  questionIdsToHide.push(r.questionId);
+                }
+              });
+              return updatedResponses.filter(
+                (response) =>
+                  questionIdsToHide.indexOf(response.questionId) === -1
               );
             } else {
               return [...responses, response];

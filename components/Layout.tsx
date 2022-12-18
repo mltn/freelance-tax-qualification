@@ -9,7 +9,7 @@ type Props = {
 
 const Layout = ({
   children,
-  title = "Test Samostalnosti - Kriterijum 5.",
+  title = "Samooporezivanje (freelancer)",
 }: Props) => (
   <div className="">
     <Head>
